@@ -1,0 +1,8 @@
+/copia-proyecto
+/node_modules
+/py_cache
+*.exe
+*.jar
+*.tar
+*.mp4
+commits.txt

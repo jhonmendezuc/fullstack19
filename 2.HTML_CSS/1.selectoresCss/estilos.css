@@ -1,0 +1,91 @@
+/*
+selectores
+*/
+
+/* universales*/
+* {
+ margin: 0;
+ padding: 0;
+ font-family: Arial, Helvetica, sans-serif;
+}
+
+/* id - identificador */
+#parrafo-inicio{
+  color: brown;
+  margin-left: 10px;
+}
+
+#parrafo-secundario{
+  color: cadetblue;
+  margin-left: 30px;
+}
+
+.contenedor,
+.contenedor-dos{
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid #f00;
+  width: 50%;
+}
+/* tipo: tags html*/
+p{
+  font-size: 10px;
+  margin-left: 3px;
+}
+h2{
+  background-color: black;
+  color: yellow;
+  padding: 5px;
+}
+input{
+  margin: 5px;
+  padding: 5px;
+}
+/* clase - class: clasificación de tags */
+.parrafo-terciario{
+  font-weight: 900;
+}
+
+/* atributo  */
+input[type="text"]{
+  border: 1px solid #f00;
+  padding: 3px;
+  border-radius: 3px;
+  width: 200px;
+}
+input[type="date"]{
+  background-color: antiquewhite;
+}
+input[type="number"]{
+  width: 50px;
+}
+input[type="password"],
+input[type="date"],
+input[type="submit"] {
+  border: none;
+}
+/* selectores hijo - descendientes*/
+body .contenedor-dos h2 {
+  background-color: red;
+}
+
+.contenedor input[type="text"]{
+  text-align: center;
+}
+
+.contenedor-dos label{
+  cursor: pointer;
+}
+
+/* pseudoselectores pseudoclases */
+.contenido:hover{
+  background-color: #666;
+  cursor: pointer;
+
+}
+#check:checked ~ .contenido{
+  display: none;
+}
+.contenedor { /* the element was .contenedor */
+  text-align: center;
+}

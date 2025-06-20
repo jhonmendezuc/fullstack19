@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi primera web</title>
+    <link rel="stylesheet" href="./estilos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* selectores id */
+
+      #titulo1 {
+        color: #a223d9;
+        font-size: 30px;
+        margin-top: 31px;
+        margin-left: 45px;
+        margin-bottom: 33px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        padding: 8px 8px 9px 40px;
+        box-shadow: 0px 1px 1px #000;
+        width: 200px;
+        font-family: "Montserrat", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="titulo1">Canción, niño</h1>
+    <!-- 
+    <h2>titulo 2</h2>-->
+
+    <h3 id="titulo3">Canción, niño</h3>
+    <h4>titulo 4</h4>
+    <h5>titulo 5</h5>
+    <h6>titulo 6</h6>
+    <div>
+      <strong> titulo 1 </strong>
+    </div>
+    <div>
+      <p>
+        mi parrafo
+        <em> titulo 2 </em>
+      </p>
+    </div>
+    <div>titulo 3</div>
+    <ul>
+      <li>item 1</li>
+      <li>item 2</li>
+      <li>item 3</li>
+    </ul>
+    <ol>
+      <li>item 1</li>
+      <li>item 2</li>
+      <li>item 3</li>
+    </ol>
+    <hr />
+    <p>
+      mi <br />
+      parrafo
+    </p>
+    <img
+      src="https://www.ucatalunya.edu.co/slider_img/junio-2025-dt.jpg?ver=1748623828"
+      alt="logo"
+      width="200px"
+    />
+    <img
+      src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg"
+      alt="log facebook"
+      width="100px"
+    />
+    <label for="">menus</label>
+    <details>
+      <summary>ver mas informacion</summary>
+      <p>este es un contenido del curso de fullstack</p>
+    </details>
+    <details>
+      <summary>ver mas informacion</summary>
+      <p>este es un contenido del curso de fullstack</p>
+    </details>
+    <hr />
+    <label for="">formularios</label>
+    <form action="http://miformulario.html">
+      <label for="">ingrese su usuario</label>
+      <input placeholder="ingresar username" type="text" /> <br />
+      <label for="">ingrese su correo</label>
+      <input placeholder="ingresar email" type="email" /><br />
+      <label for="">fecha nacimiento</label>
+      <input type="date" /> <br />
+      <input type="submit" /> <br />
+      <button>Ingresar informacion</button>
+    </form>
+    <br />
+    <hr />
+    <label for="">ventanas de dialogo</label>
+    <dialog id="miVentana" close>
+      <p>esto es un mensaje</p>
+      <button onclick="miVentana.close()">cerrar ventana</button>
+    </dialog>
+    <button onclick="miVentana.showModal()">abrir ventana</button>
+    <br />
+    <hr />
+    <label for="">barras de progreso</label>
+    <meter value="0.7" min="0" max="1">70%</meter>
+    <br />
+    <hr />
+    <label for="">paginas emergentes</label>
+    <iframe
+      width="200"
+      height="200"
+      src="https://www.educaweb.com"
+      frameborder="1"
+    ></iframe>
+    <br />
+    <hr />
+    <a href="#">ir al inicio</a>
+    <br />
+    <hr />
+    <input type="checkbox" id="mostrar" />
+    <label for="mostrar">mostrar opciones</label>
+  </body>
+</html>

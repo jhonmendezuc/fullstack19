@@ -154,3 +154,118 @@ listaUsuarios.shift();
 console.log(listaUsuarios);
 listaUsuarios.splice(1);
 console.log(listaUsuarios);
+
+let comidas = ["🍔", "🌭", "🍕", "🍟", "🍔"];
+//filtros
+//find: busca el primer elemento dentro de una lista
+let busquedaComida = comidas.find((comida) => comida == "🍔");
+busquedaComida;
+//filter: devuelve un nuevo array con el fitro
+let filtroComidas = comidas.filter((comida) => comida == "🍔");
+filtroComidas;
+
+//recorrer una lista
+//foreach
+comidas.forEach((comida, indice) => {
+  console.log(`${comida} -> ${indice}`);
+});
+//devolver una nueva lista con nuevos elementos
+comidas;
+let combo = comidas.map((comida) => comida + "🍺");
+combo;
+
+//agregar una nueva comida
+//comidas.push('🍗')
+//comidas[0] = "🍜"
+//comidas
+/*
+{
+ "cedula":"123",
+ "datos": {
+    "nombre":"jhon",
+    "apellido":"mendez",
+    "telefonos": [123454,4645464]
+ }
+}
+
+*/
+
+let usuarios = [
+  {
+    correo: "jhon@gmail.com",
+    nombre: "jhon",
+  },
+  {
+    nombre: "jhon",
+    correo: "gabriel@gmail.com",
+  },
+  {
+    nombre: "felipe",
+    correo: "felipe@gmail.com",
+  },
+];
+let filtroUsuarios = usuarios.filter((usuario) => usuario.nombre == "jhon");
+console.log(filtroUsuarios);
+
+let estudiante = new Object();
+estudiante.nombre = "jhon";
+estudiante.apellido = "mendez";
+estudiante.correos = ["jhon@gmail.com", "jhon@outlook.com"];
+estudiante.edad = 45;
+estudiante.activo = true;
+estudiante.peso = 45.5;
+estudiante.direcciones = {
+  casa: "calle falsa 123",
+  trabajo: "calle falsa 456",
+};
+estudiante.direcciones.casa;
+estudiante.correos[1];
+
+let estudiantes = [];
+let estudiante2 = {
+  nombre: "juan",
+  apellido: "fernandez",
+};
+estudiantes.push(estudiante);
+estudiantes.push(estudiante2);
+estudiantes[0].direcciones.casa;
+
+console.log(estudiantes);
+function Usuario(correo, contrasena) {
+  this.correo = correo;
+  this.contrasena = contrasena;
+}
+
+let nuevoUsuario = new Usuario("jhon@gmail.com", "123", "jhon");
+console.log(nuevoUsuario);
+
+class Profesor {
+  constructor(nombre, apellido, edad) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.edad = edad;
+  }
+
+  darClase() {
+    return `el profesor ${this.nombre} dara clase...`;
+  }
+}
+
+let profesorFullstack = new Profesor("jhon", "mendez", 45);
+let profesorPython = new Profesor("juan", "mendez", 45);
+profesorFullstack.darClase();
+console.log(profesorPython.darClase());
+//MAPS - ESTRUCTURA DE DATOS
+/*
+"CLAVE":"VALOR"
+*/
+
+const miMapa = new Map();
+miMapa.set("nombre", "jhon");
+miMapa.set("edad", 15);
+miMapa.set("profesion", "ingeniero");
+miMapa.get("nombre");
+miMapa.size;
+miMapa.has("edad");
+miMapa.delete("edad");
+miMapa;

@@ -1,0 +1,91 @@
+/* funciones de agregacion*/
+/* seleccionando los dos primeros autores de nacionalidad chilena  */
+db.autor.aggregate([
+  {
+    $match: {
+      nacionalidad: "chilena",
+    },
+  },
+  {
+    $limit: 2,
+  },
+]);
+
+/* project: seleccionar los atributos de una coleccion*/
+db.autor.aggregate([
+  {
+    $project: {
+      nombre: 1,
+      nacionalidad: 1,
+    },
+  },
+  {
+    $limit: 2,
+  },
+]);
+
+/* cantidad de libros por autor*/
+db.libro.aggregate([
+  {
+    $group: {
+      _id: "$autor_id",
+      cantidad_libros: { $sum: 1 },
+    },
+    $lookup: {
+      from: "autor",
+      localField: "_id",
+      foreignField: "_id",
+      as: "autor",
+    },
+  },
+  {
+    $project: {
+      _id: 0,
+      autor: "$autor.nombre",
+      cantidad_libros: 1,
+    },
+  },
+]);
+
+db.libro.aggregate([
+  {
+    $group: {
+      _id: "$autor_id",
+      cantidad_libros: {
+        $sum: 1,
+      },
+    },
+  },
+  {
+    $lookup: {
+      from: "autor",
+      localField: "_id",
+      foreignField: "_id",
+      as: "info_autor",
+    },
+  },
+  {
+    $unwind: "$info_autor",
+  },
+  {
+    $project: {
+      _id: 0,
+      autor: "$info_autor.nombre",
+      cantidad_libros: 1,
+    },
+  },
+  {
+    $get: 2,
+  },
+]);
+
+/* sumar los precios por autor*/
+db.libro.aggregate([
+  {
+    $group: {
+      _id: "$autor_id",
+      total_precio_libro: { $sum: "$precio" },
+      cantidad_libros: { $sum: 1 },
+    },
+  },
+]);

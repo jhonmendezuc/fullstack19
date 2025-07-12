@@ -1,0 +1,51 @@
+/* operadores 
+ relación
+ boleanos
+ aritmeticos
+*/
+/* operadores de relacion
+> mayor que $gt
+< menor que $lt
+>= mayor o igual que $gte
+== igual $eq
+!= diferente $ne
+$exist: existe
+*/
+
+db.autor.find({
+  nacionalidad: {
+    $eq: "colombiana",
+  },
+});
+
+/*buscar los autores que tengan nacionalidad*/
+db.autor.find({ nacionalidad: { $exists: true } });
+db.autor.find({ nacionalidad: { $type: "string" } });
+
+/*consultar libro con precio superior a 10*/
+db.libro.find({ precio: { $gt: 10 } });
+
+/* operadores boleanos: and, or  */
+/*buscar autor por nombre y pais*/
+db.autor.find({
+  $and: [{ nombre: "Gabriel garcia marquez" }, { nacionalidad: "colombiana" }],
+});
+/* buscar libros publicadores despues de 1900 o que valgan menos de 100*/
+db.libro.find({
+  $or: [
+    {
+      precio: { $lt: 100 },
+    },
+    {
+      nombre: "Las aventuras de Tom Sawyer",
+    },
+  ],
+});
+
+db.libro.find({ fecha_publicacion: { $gt: new Date("1900-01-00") } });
+/* operaciones aritmeticas
+ suma: $sum,
+ resta, $substract,
+ mult: $multiply,
+ division: $divide,
+*/

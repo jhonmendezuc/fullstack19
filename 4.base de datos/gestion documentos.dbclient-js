@@ -1,0 +1,75 @@
+/*mongo shell*/
+/*insertar un documento en la coleccion autor*/
+
+db.autor.insertOne({
+  correo: "gabriel@gmail.com",
+  nacionalidad: "colombiana",
+  nombre: "Gabriel garcia marquez",
+  libros: [
+    {
+      titulo: "Cien años de soledad",
+      anio: 1967,
+      genero: "realismo mágico",
+    },
+    {
+      titulo: "El amor en los tiempos del cólera",
+      anio: 1985,
+      genero: "realismo mágico",
+    },
+  ],
+});
+db.autor.insertMany([
+  {
+    nombre: "Isabelle allende",
+    nacionalidad: "chilena",
+    correo: "chile@gmail.com",
+  },
+  {
+    nombre: "Bill gates",
+    nacionalidad: "estadounidense",
+    correo: "bill@gmail.com",
+  },
+]);
+/*buscar todos los autores*/
+db.autor.find({ nombre: "Isabelle allende" });
+/*buscar por id*/
+db.autor.find({ _id: ObjectId("686f00b4ed374a130b0c069e") });
+
+/* eliminar un autor */
+/* eliminar por nombre*/
+db.autor.deleteOne({ nombre: "Isabelle allende" });
+/*eliminar por id*/
+db.autor.deleteOne({ _id: ObjectId("686f04cada2dd2c8644536fb") });
+
+/*actualizacion autor*/
+db.autor.updateOne(
+  { _id: ObjectId("686f00b4ed374a130b0c069e") },
+  {
+    $set: {
+      nacionalidad: "chilena",
+      correo: "mariom@gmail.com",
+      edad: 45,
+    },
+  }
+);
+
+/**********     mongo vscode   *******************/
+db("liberia").collection("autor").insertOne({
+  nombre: "Mario Mendoza",
+  nacionalidad: "colombiana",
+  correo: "mario@gmail.com",
+});
+
+db("liberia").collection("autor").find().toArray();
+
+/*actualizacion*/
+db("liberia")
+  .collection("autor")
+  .updateOne(
+    { _id: new ObjectId("686f00b4ed374a130b0c069e") },
+    {
+      $set: {
+        edad: 50,
+      },
+    }
+  );

@@ -1,0 +1,33 @@
+{
+  "name": "modulos_terceros",
+  "version": "1.0.0",
+  "description": "ejemplos de modulos de terceros en node",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhonmendezuc/fullstack19.git"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "backend"
+  ],
+  "author": "jhon mendez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jhonmendezuc/fullstack19/issues"
+  },
+  "homepage": "https://github.com/jhonmendezuc/fullstack19#readme",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0",
+    "nodemon": "^3.1.10"
+  }
+}

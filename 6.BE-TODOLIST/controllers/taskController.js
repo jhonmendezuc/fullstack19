@@ -1,18 +1,28 @@
 import taskService from "../services/taskService.js";
 
-const getTask = (req, res) => {
-  const data = taskService.getTask();
+const getTasks = async (req, res) => {
+  const data = await taskService.getTasks();
   res.send(data);
 };
 
-const createTask = (req, res) => {
+const getTask = (req, res) => {
+  const id = req.params.id;
+  const data = taskService.getTask(id);
+  if (!data) {
+    res.status(404).send("tarea no encontrada");
+    return;
+  }
+  res.send(data);
+};
+
+const createTask = async (req, res) => {
   const body = req.body;
-  console.log(body);
-  taskService.createTask(body);
-  res.send("tarea creada");
+  const data = await taskService.createTask(body);
+  res.send(data);
 };
 
 export default {
+  getTasks,
   getTask,
   createTask,
 };

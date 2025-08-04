@@ -1,30 +1,34 @@
-const tasks = [
-  {
-    id: 1,
-    title: "Learn React",
-    description: "tarea1",
-    status: false,
-    user: 1,
-  },
-  {
-    id: 2,
-    title: "aprender node",
-    description: "tarea2",
-    status: true,
-    user: 1,
-  },
-];
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+const getTasks = async () => {
+  const data = await prisma.task.findMany();
+  return data;
+};
 
 const createTask = (body) => {
-  tasks.push(body);
+  const data = prisma.task.create({
+    data: {
+      title: body.title,
+      description: body.description,
+      user: {
+        connect: {
+          id: body.userId,
+        },
+      },
+    },
+  });
+  return data;
 };
-const getTask = () => {
-  return tasks;
+
+const getTask = (id) => {
+  return tasks.find((task) => task.id === id);
 };
 //const completeTask = ();
 //const DeleteTask = ();
 
 export default {
   createTask,
+  getTasks,
   getTask,
 };

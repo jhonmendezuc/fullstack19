@@ -3,6 +3,9 @@ import taskController from "../controllers/taskController.js";
 
 const router = new Router();
 
-router.get("/", taskController.getTask).post("/", taskController.createTask);
+router
+  .get("/", taskController.getTasks)
+  .get("/:id", taskController.getTask)
+  .post("/", taskController.createTask);
 
 export default router;

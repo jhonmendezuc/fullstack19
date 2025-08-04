@@ -13,7 +13,11 @@
   "license": "MIT",
   "description": "backend ejercicio todo list",
   "dependencies": {
+    "@prisma/client": "^6.13.0",
     "dotenv": "^17.2.1",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.13.0"
   }
 }

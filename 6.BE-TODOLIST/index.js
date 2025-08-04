@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import taskRoutes from "./routes/taskRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 const app = express();
 dotenv.config();
 
@@ -9,6 +10,7 @@ app.use(json());
 
 //midleware rutas: responde a rutas de los clientes
 app.use("/task", taskRoutes);
+app.use("/user", userRoutes);
 
 //midleware not found: ruta no encontrada
 app.use((req, res) => {

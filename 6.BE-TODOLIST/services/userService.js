@@ -1,36 +1,47 @@
-const users = [
-  {
-    id: 1,
-    name: "jhon mendez",
-    description: "tarea1",
-    status: false,
-    user: 1,
-  },
-  {
-    id: 2,
-    title: "aprender node",
-    description: "tarea2",
-    status: true,
-    user: 1,
-  },
-];
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
-const createUser = (body) => {
-  users.push(body);
-};
-const getUsers = () => {
-  return users;
+const prisma = new PrismaClient();
+
+const createUser = async (body) => {
+  const pass = await hashPassword(body.password);
+  const data = await prisma.user.create({
+    data: {
+      email: body.email,
+      name: body.name,
+      password: pass,
+    },
+  });
+  return data;
 };
 
-const getUser = (id) => {
-  console.log(typeof id);
-  return users.find((user) => user.id == id);
+const login = async (body) => {
+  const { email, password } = body;
+  const user = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
+  if (user) {
+    const match = await comparePassword(password, user.password);
+    if (!match) {
+      return { respuesta: "fail", message: "password incorrecto" };
+    }
+  }
+  return { respuesta: "success", message: user };
 };
-//const completeUser = ();
-//const DeleteUser = ();
+
+async function hashPassword(password) {
+  const passwordHash = await bcrypt.hash(password, 10);
+  return passwordHash;
+}
+
+async function comparePassword(passwordBody, passwordBd) {
+  const match = await bcrypt.compare(passwordBody, passwordBd);
+  return match;
+}
 
 export default {
   createUser,
-  getUsers,
-  getUser,
+  login,
 };

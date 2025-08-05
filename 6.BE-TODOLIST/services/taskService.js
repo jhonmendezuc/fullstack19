@@ -6,8 +6,16 @@ const getTasks = async () => {
   return data;
 };
 
-const createTask = (body) => {
-  const data = prisma.task.create({
+const getTask = async (_id) => {
+  const data = await prisma.task.findUnique({
+    where: {
+      id: _id,
+    },
+  });
+  return data;
+};
+const createTask = async (body) => {
+  const data = await prisma.task.create({
     data: {
       title: body.title,
       description: body.description,
@@ -21,14 +29,33 @@ const createTask = (body) => {
   return data;
 };
 
-const getTask = (id) => {
-  return tasks.find((task) => task.id === id);
+const updateTask = async (_id, body) => {
+  const data = await prisma.task.update({
+    where: {
+      id: _id,
+    },
+    data: {
+      title: body.title,
+      description: body.description,
+      status: body.status,
+    },
+  });
+  return data;
 };
-//const completeTask = ();
-//const DeleteTask = ();
+const deleteTask = async (_id) => {
+  const data = await prisma.task.delete({
+    where: {
+      id: _id,
+    },
+  });
+
+  return data;
+};
 
 export default {
   createTask,
   getTasks,
   getTask,
+  updateTask,
+  deleteTask,
 };

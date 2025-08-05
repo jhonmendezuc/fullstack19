@@ -1,29 +1,22 @@
 import userService from "../services/userService.js";
 
-const getUsers = (req, res) => {
-  const data = userService.getUsers();
-  res.send(data);
-};
-
-const getUser = (req, res) => {
-  const id = req.params.id;
-  const data = userService.getUser(id);
+const login = async (req, res) => {
+  const body = req.body;
+  const data = await userService.login(body);
   if (!data) {
-    res.status(404).send("tarea no encontrada");
+    res.status(404).send("usuario no encontrado");
     return;
   }
   res.send(data);
 };
 
-const createUser = (req, res) => {
+const createUser = async (req, res) => {
   const body = req.body;
-  console.log(body);
-  userService.createUser(body);
-  res.send("tarea creada");
+  const data = await userService.createUser(body);
+  res.send(data);
 };
 
 export default {
-  getUsers,
-  getUser,
+  login,
   createUser,
 };

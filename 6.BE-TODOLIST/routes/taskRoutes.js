@@ -6,6 +6,8 @@ const router = new Router();
 router
   .get("/", taskController.getTasks)
   .get("/:id", taskController.getTask)
-  .post("/", taskController.createTask);
+  .post("/", taskController.createTask)
+  .put("/:id", taskController.updateTask)
+  .delete("/:id", taskController.deleteTask);
 
 export default router;

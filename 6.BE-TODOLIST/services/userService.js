@@ -1,5 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const prisma = new PrismaClient();
 
@@ -22,13 +26,32 @@ const login = async (body) => {
       email: email,
     },
   });
+  if (user == null) {
+    return { respuesta: "fail", message: "usuario no encontrado" };
+  }
   if (user) {
     const match = await comparePassword(password, user.password);
     if (!match) {
       return { respuesta: "fail", message: "password incorrecto" };
     }
+    user.password = "";
+    const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: "1h" });
+    return { respuesta: "success", message: token };
   }
-  return { respuesta: "success", message: user };
+};
+
+const updateUser = async (body) => {
+  const pass = await hashPassword(body.password);
+  const data = await prisma.user.update({
+    where: {
+      email: body.email,
+    },
+    data: {
+      name: body.name,
+      password: pass,
+    },
+  });
+  return data;
 };
 
 async function hashPassword(password) {
@@ -44,4 +67,5 @@ async function comparePassword(passwordBody, passwordBd) {
 export default {
   createUser,
   login,
+  updateUser,
 };

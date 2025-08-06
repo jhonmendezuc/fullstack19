@@ -2,8 +2,18 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import taskRoutes from "./routes/taskRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
 const app = express();
 dotenv.config();
+
+//midleware: cors
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 //midleware: json
 app.use(json());

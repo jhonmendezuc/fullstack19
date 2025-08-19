@@ -1,5 +1,5 @@
 /copia-proyecto
-/node_modules
+***/node_modules
 /py_cache
 *.exe
 *.jar

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="peticion()">Enviar peticion</button>
+    <script>
+      function peticion() {
+        alert("peticion realizada");
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const usuario = {
+          email: "jhon@gmail.com",
+          name: "jhon",
+          password: "123",
+        };
+        const usuarioJson = JSON.stringify(usuario);
+
+        const requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: usuarioJson,
+          redirect: "follow",
+        };
+
+        fetch("http://127.0.0.1:5500/user", requestOptions)
+          .then((response) => response.text())
+          .then((result) => console.log(result))
+          .catch((error) => console.error(error))
+          .finally(() => {
+            console.log("peticion fializada...");
+          });
+      }
+    </script>
+  </body>
+</html>

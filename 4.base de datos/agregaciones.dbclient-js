@@ -89,3 +89,65 @@ db.libro.aggregate([
     },
   },
 ]);
+
+db.tareas.aggregate([
+  {
+    $match: { estadoTarea: "C" }, // Filtra solo las tareas completadas
+  },
+  {
+    $group: {
+      idUsuario: "$idUsuario", // Agrupa por idUsuario
+      totalCompletadas: { $count: 1 }, // Cuenta tareas completadas
+    },
+  },
+  {
+    $lookup: {
+      from: "usuarios",
+      localField: "idUsuario",
+      foreignField: "idUsuario",
+      as: "usuario",
+    },
+  },
+  {
+    $unwind: "$usuario",
+  },
+  {
+    $project: {
+      _id: 0,
+      idUsuario: 1,
+      nombreUsuario: 1,
+      totalCompletadas: 1,
+    },
+  },
+]);
+
+db.tareas.aggregate([
+  {
+    $match: { estadoTarea: "C" },
+  },
+  {
+    $group: {
+      _id: "$idUsuario",
+      totalCompletadas: { $sum: 1 },
+    },
+  },
+  {
+    $lookup: {
+      from: "usuarios",
+      localField: "_id",
+      foreignField: "idUsuario", // o "_id" si es el campo real
+      as: "usuario",
+    },
+  },
+  {
+    $unwind: "$usuario",
+  },
+  {
+    $project: {
+      _id: 0,
+      idUsuario: "$_id",
+      nombreUsuario: "$usuario.nombre", // Ajusta el nombre del campo
+      totalCompletadas: 1,
+    },
+  },
+]);

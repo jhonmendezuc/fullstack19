@@ -6,6 +6,8 @@ const Menu = () => {
       <Link to="/compfunc">Ej. Comp funcion</Link> |
       <Link to="/compclase">Ej. Comp clase</Link> |
       <Link to="/estilos">Ej. Estilos (css)</Link>
+      <Link to="/estilosmui">Ej. Estilos (mui)</Link>
+      <Link to="/props">Ej. Props</Link>
     </>
   );
 };
